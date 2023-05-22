@@ -1,6 +1,6 @@
-const { Client, SessionManager } = require('../dist/index.js');
-const path = require('node:path');
-const https = require('node:https');
+import { Client, SessionManager } from '@/index';
+import path from 'node:path';
+import https from 'node:https';
 
 const session = new SessionManager(
   path.resolve(__dirname, 'sessions'),
@@ -41,7 +41,7 @@ client.on('ready', () => {
 client.command('meow', async (ctx) => {
   client.logger.info('Meow executed');
   const url = await getMeowUrl();
-  await ctx.replyWithPhoto(url, 'free cat!');
+  await ctx.replyWithPhoto(url as string, 'free cat!');
 });
 
 client.launch();

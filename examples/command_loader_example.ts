@@ -1,5 +1,5 @@
-const { Client, SessionManager, CommandLoader } = require('../dist/index.js');
-const path = require('node:path');
+import { Client, SessionManager, CommandLoader } from '@/index';
+import path from 'node:path';
 
 const session = new SessionManager(
   path.resolve(__dirname, 'sessions'),

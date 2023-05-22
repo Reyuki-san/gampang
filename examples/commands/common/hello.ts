@@ -1,4 +1,4 @@
-const { buildCommand } = require('../../../dist');
+import { buildCommand } from '@/index';
 
 module.exports = buildCommand({
   options: {

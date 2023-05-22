@@ -1,20 +1,24 @@
-const { Client, SessionManager, ButtonBuilder } = require('../dist/index.js');
-const path = require('node:path');
+import { Client, SessionManager, ButtonBuilder } from '../dist/index';
+// import { Client, SessionManager, ButtonBuilder } from '@/index';
+import path from 'node:path';
 
 const session = new SessionManager(
   path.resolve(__dirname, 'sessions'),
   'folder',
 );
+
 // const sessionFile = new SessionManager(
 //   path.resolve(__dirname, 'session.json'),
 //   'file',
 // );
+
 const client = new Client(session, {
   'qr': {
-    'store': 'file',
-    'options': {
-      'dest': path.resolve(__dirname, 'scan.jpg'),
-    },
+    // 'store': 'terminal',
+    store: 'web',
+    // options: {
+    //   port: '3000',
+    // },
   },
   'prefixes': ['.'],
 });
@@ -94,7 +98,9 @@ client.on('poll', console.log);
 client.on('vote', console.log);
 
 client.addCustomEvent('messages.upsert', (_, { messages }) => {
-  console.log(JSON.stringify(messages));
+  return new Promise(() => {
+    console.log(JSON.stringify(messages));
+  });
 });
 
 client.launch();

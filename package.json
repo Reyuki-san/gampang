@@ -8,7 +8,7 @@
     "format": "prettier . --write",
     "lint": "eslint \"src/**/*.{ts,js,d.ts}\" --fix",
     "build": "tsup",
-    "test": "npm run build && nodemon ./examples/normal.js",
+    "test": "nodemon ./examples/normal.ts",
     "clean": "rimraf dist",
     "prepare": "husky install",
     "docs": "rimraf docs && typedoc --options typedoc.json"
@@ -33,6 +33,8 @@
     "prettier": "^2.8.7",
     "rimraf": "^3.0.2",
     "sharp": "^0.31.3",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
     "tsup": "^6.7.0",
     "typedoc": "^0.23.28",
     "typedoc-plugin-mdn-links": "^2.0.2",
@@ -49,6 +51,18 @@
   "nodemonConfig": {
     "ignore": [
       "./examples/sessions/*"
+    ],
+    "verbose": true,
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "execMap": {
+      "ts": "ts-node"
+    },
+    "ext": "ts",
+    "watch": [
+      "./examples/",
+      "./src/"
     ]
   },
   "repository": {
